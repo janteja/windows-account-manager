@@ -23,7 +23,7 @@ app.listen(8080);
 
 
 app.get('/', function (req, res){
-res.sendFile("C:\\Users\\Administrator\\Desktop\\index.html");
+res.sendFile("C:\\Users\\Administrator\\Desktop\\index2.html");
 });
 
 app.post('/logins', function (req,res){
@@ -48,83 +48,100 @@ fs.createReadStream('result.csv')
    res.write(`<!doctype html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style type="text/css">
-  table, td, th {  
-  border: 1px solid #ddd;
-  text-align: left;
-}
+<title> Last Login </title>
+	   <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-table {
+<style type="text/css">
+	.searchBar{
+		
+		align-content: center;
+		padding-left: 40%;
+		padding-right: 40%;
+		height: auto;
+		text-align: center;
+		
+		
+	}
+	.Menu{
+		padding-top: 20px;
+		padding-bottom: 20px;
+		margin: auto;
+		width: 60%;
+	
+
+		
+	}
+	.buttons { 
+  width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
+  background-color:aqua; 
+}
+.buttons button { 
   width: 100%;
 }
+	
+	 input[type="text"]::placeholder {  
+                  
+                /* Firefox, Chrome, Opera */ 
+                text-align: center; 
+            } 
+	  
+ .results th {
+	 align: center;
+	 padding-right: 20px;
+ }
 
-th, td {
-  padding: 15px;
-body {
-  font-family: Arial;
+
+.results table {
+	border-bottom: thick;
+	 margin-left:auto; 
+    margin-right:auto;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-form.example input[type=text] {
-  padding: 10px;
-  font-size: 17px;
-  border: 1px solid grey;
-  float: left;
-  width: 80%;
-  background: #f1f1f1;
-}
-
-form.example button {
-  float: left;
-  width: 20%;
-  padding: 10px;
-  background: #2196F3;
-  color: white;
-  font-size: 17px;
-  border: 1px solid grey;
-  border-left: none;
-  cursor: pointer;
-}
-
-form.example button:hover {
-  background: #0b7dda;
-}
-
-form.example::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-</style>
+	  </style>
 </head>
 
 <body>
-<form class="example" method="POST" action="/logins" style="margin:auto;max-width:300px">
-  <input type="text" placeholder="Search.." name="username">
-  <button type="submit"><i class="fa fa-search"></i></button>
-</form>
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark col-xl-12" style="padding-bottom: 10px;"><a class="navbar-brand" " href="#">Last Login.</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+       </button>
+</nav>
+<div class="Menu">
+    <table class="buttons">
+		  <tr>
+			  <td> <form method="POST" action="/logins"> <button type="submit" style="display:inline-block; background-color:slateblue; color:aliceblue;" > Logins</button> </form> </td>
+			  <td> 	    <form method="GET" action="/locked">  <button style="display:inline-block; background-color:slateblue; color:aliceblue;" > Lockouts</button> </form> </td>
+		  
+		  </tr>
+  </table>
+		
+  </div>
+	  <div class="searchBar">
+		  <form method="POST" action="/search" > 
+		  <input  type="text" class="form-control mr-sm-2" name="username" type="search" placeholder="Search User" aria-label="Search"> 
+	  <button style=" width: 100%; border:none; border-bottom:ridge; border-bottom-color:darkslateblue;"btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>  </div>
+			</form> <br> <br>
+	<div class="results">
 <table>
   <tr>
-    <th>Time</th> 
-    <th>User</th>
-	<th>Workstation</th>
-	<th>IP</th
+    <th  style='font-weight: bold;'>Time</th> 
+    <th  style='font-weight: bold;'>User</th>
+	<th  style='font-weight: bold;'>Workstation</th>
+	<th  style='font-weight: bold;'>IP</th
   </tr> `);
 
 for(let i = 1; i < array.length; i++){ 
 if( (array[i][2].toString() == username) || (username == "*")|| (username == null)){
 res.write("<tr>");
- res.write("<td>" + array[i][1] + "</td>");
- res.write("<td>" + array[i][2] + "</td>");
- res.write("<td>" + array[i][4] + "</td>");
- res.write("<td>" + array[i][5] + "</td>");
+ res.write("<th>" + array[i][1] + "</th>");
+ res.write("<th>" + array[i][2] + "</th>");
+ res.write("<th>" + array[i][4] + "</th>");
+ res.write("<th>" + array[i][5] + "</th>");
  res.write("</tr>");
 }
 
@@ -132,7 +149,7 @@ res.write("<tr>");
 }
 
 
-res.end(`</html>`);
+res.end(`</table> </div></html>`);
 
  });
 
@@ -163,13 +180,60 @@ fs.createReadStream('locked.csv')
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap - Prebuilt Layout</title>
-<link href="style.css" rel="styleshee" type="text/css">
+    <title>Locked Accounts</title>
 	   <!-- Bootstrap -->
+
+<style>
+	.searchBar{
+		
+		align-content: center;
+		padding-left: 40%;
+		padding-right: 40%;
+		height: auto;
+		text-align: center;
+		
+		
+	}
+	.Menu{
+		padding-top: 20px;
+		padding-bottom: 20px;
+		margin: auto;
+		width: 60%;
+	
+
+		
+	}
+	.buttons { 
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  background-color:aqua; 
+}
+.buttons button { 
+  width: 100%;
+}
+	
+	 input[type="text"]::placeholder {  
+                  
+                /* Firefox, Chrome, Opera */ 
+                text-align: center; 
+            } 
+	  
+ .results td {
+	 padding-right: 100px;
+	 
+ }
+.results table {
+
+	 margin-left:auto; 
+    margin-right:auto;
+}
+
+
+	   </style>
 </head>
 
 <body>
