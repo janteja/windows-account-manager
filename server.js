@@ -23,7 +23,7 @@ app.listen(8080);
 
 
 app.get('/', function (req, res){
-res.sendFile("C:\\Users\\Administrator\\Desktop\\index2.html");
+res.sendFile("C:\\Users\\Administrator\\Desktop\\index.html");
 });
 
 app.post('/logins', function (req,res){
