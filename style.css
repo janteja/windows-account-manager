@@ -1,0 +1,44 @@
+	.searchBar{
+		
+		align-content: center;
+		padding-left: 40%;
+		padding-right: 40%;
+		height: auto;
+		text-align: center;
+		
+		
+	}
+	.Menu{
+		padding-top: 20px;
+		padding-bottom: 20px;
+		margin: auto;
+		width: 60%;
+	
+
+		
+	}
+	.buttons { 
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  background-color:aqua; 
+}
+.buttons button { 
+  width: 100%;
+}
+	
+	 input[type="text"]::placeholder {  
+                  
+                /* Firefox, Chrome, Opera */ 
+                text-align: center; 
+            } 
+	  
+ .results td {
+	 padding-right: 100px;
+	 
+ }
+.results table {
+
+	border-bottom: thick;
+}
+
